@@ -139,7 +139,7 @@ void capturepackets() //Main FOR = bytes, nested FOR = bits
                             {}
                         }                  
                   }
-                if (controllerconnected && longresetcombo) LONGRST;                    // LONG RESET
+                if (controllerconnected && longresetcombo);                    
                   { 
                     for (int i=0; i<5; i++) {
                       digitalWrite(ledpin, HIGH);
@@ -149,7 +149,7 @@ void capturepackets() //Main FOR = bytes, nested FOR = bits
                       }
                       if (controllerconnected && longresetcombo)
                         {
-                          LONGRST; // SHORT RESET
+                          LONGRST; // LONG RESET
                           while(longresetcombo)
                             {}
                         }                  
