@@ -10,6 +10,8 @@ This fork adds a delay and recheck to make sure you're still holding the button 
 
 <br>
 
+## Original ReadMe
+
 goes well with my [Dual Frequency Oscillator](https://github.com/L10N37/DFO-PS1-PSXTAL/tree/main) for True Dual Region! 
 
 <br>
