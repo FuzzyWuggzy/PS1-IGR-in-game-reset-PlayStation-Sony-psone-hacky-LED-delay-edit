@@ -2,6 +2,14 @@
 
 <br>
 
+## FuzzyWuggzy's edit
+
+--My fork is as of yet untested, I wouldn't bother using it until I've gotten around to it--
+
+This fork adds a delay and recheck to make sure you're still holding the button combination (to prevent unintended resets... For those who also fiddle with the controller absent-mindedly during cutscenes and whatever), there's also an LED indicator to show when the combination is pressed, plus different flash rates for long and short resets... Why? Because blinkenlights.
+
+<br>
+
 goes well with my [Dual Frequency Oscillator](https://github.com/L10N37/DFO-PS1-PSXTAL/tree/main) for True Dual Region! 
 
 <br>
