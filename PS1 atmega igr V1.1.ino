@@ -36,6 +36,7 @@ and see your desired combos printed on the serial monitor (just hold the combo),
 #define resetPin 7              //PD7
 #define clk 1                   //PB1
 #define controllerDataPin 0     //PB0
+#define ledpin 13
 #define clockishigh bitRead(PINB, clk) == HIGH
 #define ControllerDataStateIdling bitRead(PINB, controllerDataPin) == 1
 #define ControllerModes NibbleStorage == 0x7 || NibbleStorage == 0x4 || NibbleStorage == 0x5        // [7h = Analogue / 4h = Digital / 5h = SCPH1180 Green LED]
@@ -51,7 +52,7 @@ bool controllerconnected;
 void setup() {
 
   Serial.begin(115200);                                     // enable serial monitor as a type of debug console
-  pinMode(7, INPUT), pinMode(8, INPUT), pinMode(9, INPUT);  // They should default to inputs anyway
+  pinMode(7, INPUT), pinMode(8, INPUT), pinMode(9, INPUT), pinMode(13, OUTPUT);  // They should default to inputs anyway
   bitClear (PORTD, resetPin);                               // reset pin low (should default to low when switched to an output anyway)
 }
 
@@ -123,10 +124,36 @@ void capturepackets() //Main FOR = bytes, nested FOR = bits
           print();
           checkdevicemodenibble();
           
-                if (controllerconnected && shortresetcombo) SHORTRST;                  // SHORT RESET
-
+                if (controllerconnected && shortresetcombo)
+                  { 
+                    for (int i=0; i<10; i++) {
+                      digitalWrite(ledpin, HIGH);
+                      delay(25);
+                      digitalWrite(ledpin, LOW);
+                      delay(25);
+                      }
+                      if (controllerconnected && shortresetcombo)
+                        {
+                          SHORTRST; // SHORT RESET
+                          while(shortresetcombo)
+                            {}
+                        }                  
+                  }
                 if (controllerconnected && longresetcombo) LONGRST;                    // LONG RESET
-
+                  { 
+                    for (int i=0; i<5; i++) {
+                      digitalWrite(ledpin, HIGH);
+                      delay(50);
+                      digitalWrite(ledpin, LOW);
+                      delay(50);
+                      }
+                      if (controllerconnected && longresetcombo)
+                        {
+                          LONGRST; // SHORT RESET
+                          while(longresetcombo)
+                            {}
+                        }                  
+                  }
           controllerconnected = false;                                                 // check on each poll that a controllers still connected
                   
 }
